@@ -7,11 +7,10 @@ const rotasPacientes = new Router();
 
 rotasPacientes.route('/paciente')
     .get(getPacientes)
-    .post(addPaciente)
-    .put(updatePaciente);
+    .post(addPaciente);
 
 rotasPacientes.route('/paciente/:codigo')
     .get(getPacientePorCodigo)
+    .put(updatePaciente)
     .delete(deletePaciente);
-
 module.exports = { rotasPacientes };

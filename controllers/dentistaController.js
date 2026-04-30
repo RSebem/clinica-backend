@@ -21,7 +21,8 @@ const addDentista = async (req, res) => {
 };
 
 const updateDentista = async (req, res) => {
-    await updateDentistaBD(req.body)
+    const objeto = { ...req.body, codigo: req.params.codigo };
+    await updateDentistaBD(objeto)
         .then(data => res.status(200).json({ status: 'success', message: 'Dentista atualizado', objeto: data }))
         .catch(err => res.status(400).json({ status: 'error', message: '' + err }));
 };

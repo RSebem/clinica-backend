@@ -21,7 +21,8 @@ const addConsulta = async (req, res) => {
 };
 
 const updateConsulta = async (req, res) => {
-    await updateConsultaBD(req.body)
+    const objeto = { ...req.body, codigo: req.params.codigo };
+    await updateConsultaBD(objeto)
         .then(data => res.status(200).json({ status: 'success', message: 'Consulta atualizada', objeto: data }))
         .catch(err => res.status(400).json({ status: 'error', message: '' + err }));
 };
