@@ -74,8 +74,10 @@ const deletePacienteBD = async (codigo) => {
         if (results.rowCount === 0) throw `Nenhum paciente encontrado com o código ${codigo}`;
         return 'Paciente removido com sucesso';
     } catch (err) {
+        if (err.toString().includes('foreign key')) {
+            throw 'Não é possível remover este paciente pois ele possui consultas vinculadas. Remova as consultas primeiro.';
+        }
         throw 'Erro ao remover paciente: ' + err;
     }
 };
-
 module.exports = { getPacientesDB, getPacientePorCodigoDB, addPacienteBD, updatePacienteBD, deletePacienteBD };

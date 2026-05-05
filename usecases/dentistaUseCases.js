@@ -58,6 +58,9 @@ const deleteDentistaBD = async (codigo) => {
         if (results.rowCount === 0) throw `Nenhum dentista encontrado com o código ${codigo}`;
         return 'Dentista removido com sucesso';
     } catch (err) {
+        if (err.toString().includes('foreign key')) {
+            throw 'Não é possível remover este dentista pois ele possui consultas vinculadas. Remova as consultas primeiro.';
+        }
         throw 'Erro ao remover dentista: ' + err;
     }
 };
