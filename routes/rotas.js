@@ -2,9 +2,11 @@ const { Router } = require('express');
 const { rotasDentistas } = require('./rotasDentistas');
 const { rotasPacientes } = require('./rotasPacientes');
 const { rotasConsultas } = require('./rotasConsultas');
+const { rotasSeguranca } = require('./rotasSeguranca');
 
 const rotas = new Router();
 
+rotas.use(rotasSeguranca);
 rotas.use(rotasDentistas);
 rotas.use(rotasPacientes);
 rotas.use(rotasConsultas);
